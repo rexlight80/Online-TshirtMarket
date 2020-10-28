@@ -33,9 +33,9 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 
-app.use(express.static(path.join(__dirname,'..','frontEnd', 'build')));
+app.use(express.static(path.join(__dirname ,'frontEnd', 'build')));
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '..','frontEnd','build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'frontEnd','build', 'index.html'));
 });
 
 //My Routes
