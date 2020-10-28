@@ -2,7 +2,7 @@ const { API } = require("../../backend");
 
 
 export const getmeToken=(userId,token)=>{
-    return fetch(`api/payment/gettoken/${userId}`,{
+    return fetch(`/api/payment/gettoken/${userId}`,{
         method:"GET",
         headers:{
             "Content-Type":"application/json",
@@ -18,7 +18,7 @@ export const getmeToken=(userId,token)=>{
 }
 
 export const processPayment=(userId,token,paymentInfo)=>{
-    return fetch(`${API}/payment/braintree/${userId}`,{
+    return fetch(`/api/payment/braintree/${userId}`,{
         method:"POST",
         headers:{
          "Content-Type":"application/json",
