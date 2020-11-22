@@ -10,6 +10,7 @@ const AdminDashBoard = () => {
 
   const adminLeftSide = () => {
     return (
+      
       <div className="card">
         <h4 className="card-header bg-dark text-white">Admin Navigation</h4>
         <ul className="list-group">
@@ -40,6 +41,7 @@ const AdminDashBoard = () => {
           </li>
         </ul>
       </div>
+      
     );
   };
 
