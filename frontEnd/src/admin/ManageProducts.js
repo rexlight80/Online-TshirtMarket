@@ -36,13 +36,13 @@ const ManageProducts = () => {
 
   return (
     <Base title="Welcome admin" description="Manage products here">
-      <h2 className="mb-4">All products:</h2>
+      
       <Link className="btn btn-info" to={`/admin/dashboard`}>
         <span className="">Admin Home</span>
       </Link>
       <div className="row">
         <div className="col-12">
-          <h2 className="text-center text-white my-3">Total 3 products</h2>
+          <h2 className="text-center text-white my-3 mb-2">Total products: {products?.length}</h2>
 
           {products.map((product, index) => {
             return (

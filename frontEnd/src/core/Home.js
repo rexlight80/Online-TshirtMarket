@@ -26,6 +26,7 @@ export default function Home() {
     <Base title="Home Page" description="Welcome to the Tshirt Store">
       <div className="row text-center">
         <h1 className="text-white">All of tshirts</h1>
+        </div>
         <div className="row">
           {products.map((product, index) => {
             return (
@@ -35,7 +36,7 @@ export default function Home() {
             );
           })}
         </div>
-      </div>
+      
     </Base>
   );
 }

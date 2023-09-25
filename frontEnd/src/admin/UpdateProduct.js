@@ -52,7 +52,7 @@ const UpdateProduct = ({ match }) => {
           name: data.name,
           description: data.description,
           price: data.price,
-          category: data.category._id,
+          category: data.category,
           stock: data.stock,
           formData: new FormData()
         });
@@ -101,6 +101,8 @@ const UpdateProduct = ({ match }) => {
       }
     );
   };
+
+  console.log('values', values);
 
   const handleChange = name => event => {
     const value = name === "photo" ? event.target.files[0] : event.target.value;
@@ -195,8 +197,8 @@ const UpdateProduct = ({ match }) => {
 
   return (
     <Base
-      title="Add a product here!"
-      description="Welcome to product creation section"
+      title="Update product here!"
+      description="Welcome to product updation section"
       className="container bg-info p-4"
     >
       <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">

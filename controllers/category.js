@@ -12,6 +12,7 @@ exports.getCategoryById = (req, res, next, id) => {
   });
 };
 
+
 exports.createCategory = (req, res) => {
   const category = new Category(req.body);
   category.save((err, category) => {
@@ -42,10 +43,9 @@ exports.getAllCategory = (req, res) => {
 exports.updateCategory = (req, res) => {
   const category = req.category;
   category.name = req.body.name;
-
   category.save((err, updatedCategory) => {
     if (err) {
-      return res.status(400).json({
+       res.status(400).json({
         error: "Failed to update category"
       });
     }
@@ -63,7 +63,8 @@ exports.removeCategory = (req, res) => {
       });
     }
     res.json({
-      message: "Successfull deleted"
+      message: "Successfull deleted",
+      category
     });
   });
 };

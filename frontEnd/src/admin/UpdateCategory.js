@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Base from "../core/Base";
 import { isAutheticated } from "../auth/helper";
 import { Link } from "react-router-dom";
-import { createCategory } from "./helper/adminapicall";
+import { updateCategory, getCategoryById } from "./helper/adminapicall";
 
-const AddCategory = () => {
+const UpdateCategory = ({match}) => {
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -19,6 +19,22 @@ const AddCategory = () => {
     </div>
   );
 
+  const preload = categoryId => {
+      getCategoryById(categoryId).then(data =>{
+        if (data.error) {
+          setError(true);
+        } else {
+          setError("");
+          
+          setName(data.name);
+        }
+      } )
+  };
+
+  useEffect(() => {
+    preload(match.params.categoryId);
+  }, []);
+
   const handleChange = event => {
     setError("");
     setName(event.target.value);
@@ -30,26 +46,26 @@ const AddCategory = () => {
     setSuccess(false);
 
     //backend request fired
-    createCategory(user._id, token, { name }).then(data => {
+    updateCategory(match.params.categoryId, user._id, token, {name}).then(data => {
       if (data.error) {
         setError(true);
       } else {
-        setError("");
+        setError(false);
         setSuccess(true);
-        setName("");
+        setName(data.name);
       }
     });
   };
 
   const successMessage = () => {
     if (success) {
-      return <h4 className="text-success">Category created successfully</h4>;
+      return <h4 className="text-success">Updated created successfully</h4>;
     }
   };
 
   const warningMessage = () => {
     if (error) {
-      return <h4 className="text-error">Failed to create category</h4>;
+      return <h4 className="text-error">Failed to update category</h4>;
     }
   };
 
@@ -67,7 +83,7 @@ const AddCategory = () => {
           placeholder="For Ex. Summer"
         />
         <button onClick={onSubmit} className="btn btn-outline-info">
-          Create Category
+          Update Category
         </button>
       </div>
     </form>
@@ -75,8 +91,8 @@ const AddCategory = () => {
 
   return (
     <Base
-      title="Create a category here"
-      description="Add a new category for new tshirts"
+      title="Update category here"
+      description="Update category for tshirts"
       className="container bg-info p-4"
     >
       <div className="row bg-white rounded">
@@ -91,4 +107,4 @@ const AddCategory = () => {
   );
 };
 
-export default AddCategory;
+export default UpdateCategory;
